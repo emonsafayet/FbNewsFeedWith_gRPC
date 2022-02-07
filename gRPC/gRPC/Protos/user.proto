@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option csharp_namespace = "DemoGrpc.Protobufs.User.V1";
+
+package v1;
+
+service UserService {
+  rpc GetAll(EmptyRequest) returns (UsersReply) {}
+  rpc GetAllStreamed(EmptyRequest) returns (stream UserReply) {}
+  rpc GetById (UserSearchRequest) returns (UserReply) {}
+  rpc Create (UserCreateRequest) returns (UserReply) {}
+  rpc Update (UserRequest) returns (UserReply) {}
+  rpc Delete (UserSearchRequest) returns (EmptyReply) {}
+}
+
+message EmptyRequest {
+}
+
+message EmptyReply {
+}
+
+message UserSearchRequest {
+	int32 UserId = 1;
+}
+
+message UserCreateRequest {
+    string Name = 1;
+    string Email = 2;
+    string FirstName = 3;
+    string LastName = 4;
+}
+
+message UserRequest {
+	int32 Id = 1;
+    string Name = 2;
+    string Email = 3;
+    string FirstName = 4;
+    string LastName = 5;
+}
+
+message UserReply {
+	int32 Id = 1;
+    string Name = 2;
+    string Email = 3;
+    string FirstName = 4;
+    string LastName = 5;
+}
+
+message UsersReply {
+	repeated UserReply Users = 1;
+}
