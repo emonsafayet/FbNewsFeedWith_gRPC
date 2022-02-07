@@ -9,15 +9,16 @@ namespace Domain.Services
 {
     public interface IRepositoryBase<T>
     {
-        IQueryable<T> FindAll();
-        Task<IQueryable<T>> FindAllAsync();
+        IQueryable<T> GetAll();
+        Task<IQueryable<T>> GetAllAsync();
         IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression);
-        void Create(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        Task<T> AddAsync(T entity);
+        Task<T> UpdateAsync(T entity);
+        Task RemoveByIdAsync(int Id);
+        Task RemoveAsync(T entity);
         Task SaveChangesAsync();
-        Task<T> FindByIdAsync(int id);
-        Task<IList<T>> CreateRangeAsync(List<T> entitys);       
+        Task<T> GetByIdAsync(int id);
+        Task<IList<T>> AddRangeAsync(List<T> entitys);       
         Task<List<T>> ExecuteStoredProcedureAsync(string procedureName, params object[] parameters);
         Task<IQueryable<object>> ExecuteProcedureObjectAsync(string procedureName, params object[] parameters);
     }
