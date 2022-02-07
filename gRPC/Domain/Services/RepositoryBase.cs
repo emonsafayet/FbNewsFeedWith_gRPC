@@ -19,28 +19,32 @@ namespace Domain.Services
             _context = context;
         }
 
-        public void Create(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            this._context.Set<T>().Add(entity);
+            await this._context.Set<T>().AddAsync(entity);
+            await SaveChangesAsync();
+            return entity;
         }
 
-        public async Task<IList<T>> CreateRangeAsync(List<T> entitys)
+        public async Task<IList<T>> AddRangeAsync(List<T> entitys)
         {
             await this._context.Set<T>().AddRangeAsync(entitys);
+            await SaveChangesAsync();
             return entitys;
         }
 
-        public void Delete(T entity)
+        public async Task RemoveAsync(T entity)
         {
             this._context.Set<T>().Remove(entity);
+            await SaveChangesAsync();
         }
 
-        public IQueryable<T> FindAll()
+        public IQueryable<T> GetAll()
         {
             return this._context.Set<T>().AsNoTracking();
         }
 
-        public Task<IQueryable<T>> FindAllAsync()
+        public Task<IQueryable<T>> GetAllAsync()
         {
             var queryableList = this._context.Set<T>().AsNoTracking();
             return Task.FromResult(queryableList);
@@ -51,7 +55,7 @@ namespace Domain.Services
             return this._context.Set<T>().Where(expression).AsNoTracking();
         }
 
-        public async Task<T> FindByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             T data = await this._context.Set<T>().Where(x => x.Id == id).FirstOrDefaultAsync();
             return data;
@@ -62,9 +66,11 @@ namespace Domain.Services
             await this._context.SaveChangesAsync();
         }
 
-        public void Update(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
             this._context.Set<T>().Update(entity);
+            await SaveChangesAsync();
+            return entity;
         }
 
         public Task<List<T>> ExecuteStoredProcedureAsync(string procedureName, params object[] parameters)
@@ -83,5 +89,10 @@ namespace Domain.Services
             return Task.FromResult(result);
         }
 
+        public async Task RemoveByIdAsync(int Id)
+        {
+            T entity = await GetByIdAsync(Id);
+            await RemoveAsync(entity);
+        }
     }
 }
