@@ -56,8 +56,8 @@ export namespace UserSearchRequest {
 }
 
 export class UserCreateRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): void;
+  getUsername(): string;
+  setUsername(value: string): void;
 
   getEmail(): string;
   setEmail(value: string): void;
@@ -80,7 +80,7 @@ export class UserCreateRequest extends jspb.Message {
 
 export namespace UserCreateRequest {
   export type AsObject = {
-    name: string,
+    username: string,
     email: string,
     firstname: string,
     lastname: string,
@@ -91,8 +91,8 @@ export class UserRequest extends jspb.Message {
   getId(): number;
   setId(value: number): void;
 
-  getName(): string;
-  setName(value: string): void;
+  getUsername(): string;
+  setUsername(value: string): void;
 
   getEmail(): string;
   setEmail(value: string): void;
@@ -116,7 +116,7 @@ export class UserRequest extends jspb.Message {
 export namespace UserRequest {
   export type AsObject = {
     id: number,
-    name: string,
+    username: string,
     email: string,
     firstname: string,
     lastname: string,
@@ -127,8 +127,8 @@ export class UserReply extends jspb.Message {
   getId(): number;
   setId(value: number): void;
 
-  getName(): string;
-  setName(value: string): void;
+  getUsername(): string;
+  setUsername(value: string): void;
 
   getEmail(): string;
   setEmail(value: string): void;
@@ -152,7 +152,7 @@ export class UserReply extends jspb.Message {
 export namespace UserReply {
   export type AsObject = {
     id: number,
-    name: string,
+    username: string,
     email: string,
     firstname: string,
     lastname: string,

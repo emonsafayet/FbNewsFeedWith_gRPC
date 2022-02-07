@@ -24,7 +24,7 @@ message UserSearchRequest {
 }
 
 message UserCreateRequest {
-    string Name = 1;
+    string UserName = 1;
     string Email = 2;
     string FirstName = 3;
     string LastName = 4;
@@ -32,7 +32,7 @@ message UserCreateRequest {
 
 message UserRequest {
 	int32 Id = 1;
-    string Name = 2;
+    string UserName = 2;
     string Email = 3;
     string FirstName = 4;
     string LastName = 5;
@@ -40,7 +40,7 @@ message UserRequest {
 
 message UserReply {
 	int32 Id = 1;
-    string Name = 2;
+    string UserName = 2;
     string Email = 3;
     string FirstName = 4;
     string LastName = 5;
