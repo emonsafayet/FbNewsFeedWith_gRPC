@@ -68,6 +68,9 @@ export class UserCreateRequest extends jspb.Message {
   getLastname(): string;
   setLastname(value: string): void;
 
+  getPassword(): string;
+  setPassword(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UserCreateRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UserCreateRequest): UserCreateRequest.AsObject;
@@ -84,6 +87,7 @@ export namespace UserCreateRequest {
     email: string,
     firstname: string,
     lastname: string,
+    password: string,
   }
 }
 
@@ -103,6 +107,9 @@ export class UserRequest extends jspb.Message {
   getLastname(): string;
   setLastname(value: string): void;
 
+  getPassword(): string;
+  setPassword(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UserRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UserRequest): UserRequest.AsObject;
@@ -120,6 +127,7 @@ export namespace UserRequest {
     email: string,
     firstname: string,
     lastname: string,
+    password: string,
   }
 }
 
@@ -139,6 +147,9 @@ export class UserReply extends jspb.Message {
   getLastname(): string;
   setLastname(value: string): void;
 
+  getPassword(): string;
+  setPassword(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UserReply.AsObject;
   static toObject(includeInstance: boolean, msg: UserReply): UserReply.AsObject;
@@ -156,6 +167,7 @@ export namespace UserReply {
     email: string,
     firstname: string,
     lastname: string,
+    password: string,
   }
 }
 

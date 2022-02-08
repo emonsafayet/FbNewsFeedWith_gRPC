@@ -1,4 +1,7 @@
 ﻿using Data.Entities.AppDbContext;
+using DemoGrpc.Web.Services;
+using DemoGrpc.Web.Services.V1;
+using Domain.Services.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,7 +12,10 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace gRPC
 {
@@ -29,6 +35,21 @@ namespace gRPC
             services.AddGrpc();
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddCors(o =>
+            {
+                o.AddPolicy("MyPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyHeader();
+                    builder.WithExposedHeaders("Grpc-Status", "Grpc-Message");
+                });
+            });
+            services.AddAutoMapper(Assembly.Load("gRPC"));
+            services.AddSingleton<ProtoService>();
+            services.AddScoped<IUserService, UserService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,15 +61,38 @@ namespace gRPC
 
             }
 
+            app.UseHttpsRedirection();
+
             app.UseRouting();
+            app.UseCors("MyPolicy");
+            app.UseGrpcWeb();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                var protoService = endpoints.ServiceProvider.GetRequiredService<ProtoService>();
 
-                endpoints.MapGet("/", async context =>
+                endpoints.MapGrpcService<UserGRPCService>().RequireCors("MyPolicy").EnableGrpcWeb();
+
+                endpoints.MapGet("/protos", async context =>
                 {
-                    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+                    await context.Response.WriteAsync(await protoService.Get());
+                });
+
+                endpoints.MapGet("/protos/v{version:int}/{protoName}", async context =>
+                {
+                    var version = int.Parse((string)context.Request.RouteValues["version"]);
+                    var protoName = (string)context.Request.RouteValues["protoName"];
+
+                    var filePath = protoService.Get(version, protoName);
+
+                    if (filePath != null)
+                    {
+                        await context.Response.SendFileAsync(filePath);
+                    }
+                    else
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    }
                 });
             });
         }

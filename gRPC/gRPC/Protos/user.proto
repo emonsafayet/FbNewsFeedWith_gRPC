@@ -28,6 +28,7 @@ message UserCreateRequest {
     string Email = 2;
     string FirstName = 3;
     string LastName = 4;
+    string Password = 5;
 }
 
 message UserRequest {
@@ -36,6 +37,7 @@ message UserRequest {
     string Email = 3;
     string FirstName = 4;
     string LastName = 5;
+    string Password = 6;
 }
 
 message UserReply {
@@ -44,6 +46,7 @@ message UserReply {
     string Email = 3;
     string FirstName = 4;
     string LastName = 5;
+    string Password = 6;
 }
 
 message UsersReply {

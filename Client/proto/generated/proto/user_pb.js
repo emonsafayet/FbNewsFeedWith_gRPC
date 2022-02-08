@@ -542,7 +542,8 @@ proto.v1.UserCreateRequest.toObject = function(includeInstance, msg) {
     username: jspb.Message.getFieldWithDefault(msg, 1, ""),
     email: jspb.Message.getFieldWithDefault(msg, 2, ""),
     firstname: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    lastname: jspb.Message.getFieldWithDefault(msg, 4, "")
+    lastname: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    password: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -594,6 +595,10 @@ proto.v1.UserCreateRequest.deserializeBinaryFromReader = function(msg, reader) {
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setLastname(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPassword(value);
       break;
     default:
       reader.skipField();
@@ -649,6 +654,13 @@ proto.v1.UserCreateRequest.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getPassword();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -727,6 +739,24 @@ proto.v1.UserCreateRequest.prototype.setLastname = function(value) {
 };
 
 
+/**
+ * optional string Password = 5;
+ * @return {string}
+ */
+proto.v1.UserCreateRequest.prototype.getPassword = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.v1.UserCreateRequest} returns this
+ */
+proto.v1.UserCreateRequest.prototype.setPassword = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
 
 
 
@@ -763,7 +793,8 @@ proto.v1.UserRequest.toObject = function(includeInstance, msg) {
     username: jspb.Message.getFieldWithDefault(msg, 2, ""),
     email: jspb.Message.getFieldWithDefault(msg, 3, ""),
     firstname: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    lastname: jspb.Message.getFieldWithDefault(msg, 5, "")
+    lastname: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    password: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -819,6 +850,10 @@ proto.v1.UserRequest.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setLastname(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPassword(value);
       break;
     default:
       reader.skipField();
@@ -881,6 +916,13 @@ proto.v1.UserRequest.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = message.getPassword();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -977,6 +1019,24 @@ proto.v1.UserRequest.prototype.setLastname = function(value) {
 };
 
 
+/**
+ * optional string Password = 6;
+ * @return {string}
+ */
+proto.v1.UserRequest.prototype.getPassword = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.v1.UserRequest} returns this
+ */
+proto.v1.UserRequest.prototype.setPassword = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
 
 
 
@@ -1013,7 +1073,8 @@ proto.v1.UserReply.toObject = function(includeInstance, msg) {
     username: jspb.Message.getFieldWithDefault(msg, 2, ""),
     email: jspb.Message.getFieldWithDefault(msg, 3, ""),
     firstname: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    lastname: jspb.Message.getFieldWithDefault(msg, 5, "")
+    lastname: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    password: jspb.Message.getFieldWithDefault(msg, 6, "")
   };
 
   if (includeInstance) {
@@ -1069,6 +1130,10 @@ proto.v1.UserReply.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setLastname(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPassword(value);
       break;
     default:
       reader.skipField();
@@ -1131,6 +1196,13 @@ proto.v1.UserReply.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = message.getPassword();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -1224,6 +1296,24 @@ proto.v1.UserReply.prototype.getLastname = function() {
  */
 proto.v1.UserReply.prototype.setLastname = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional string Password = 6;
+ * @return {string}
+ */
+proto.v1.UserReply.prototype.getPassword = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.v1.UserReply} returns this
+ */
+proto.v1.UserReply.prototype.setPassword = function(value) {
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
