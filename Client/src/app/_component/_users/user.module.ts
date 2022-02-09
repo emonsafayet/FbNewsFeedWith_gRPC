@@ -4,12 +4,14 @@ import { UserRoutingModule } from './user-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { SignupComponent } from './signup/signup.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 
 @NgModule({
   declarations: [
-    SignupComponent
+    SignupComponent,
+    UserListComponent
   ],
   imports: [
     CommonModule,
