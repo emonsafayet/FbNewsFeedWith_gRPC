@@ -1,0 +1,86 @@
+<div class="form-container">
+    <div class="registration-form">
+        <div class="form-title"><span>Registration form</span></div>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="firstName">Firstname</label>
+                        <input
+                            type="text"
+                            id="firstName"
+                            formControlName="FirstName"
+                            [ngClass]="{ 'is-invalid': submitted && f['FirstName'].errors }"
+                        />
+                    </div>
+                </div>
+        
+                <div class="col">
+                    <div class="form-group">
+                        <label for="lastName">Lastname</label>
+                        <input 
+                         type="text"
+                         id="lastName" 
+                         formControlName="LastName" 
+                         [ngClass]="{ 'is-invalid': submitted && f['LastName'].errors }"
+                        />
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input 
+                         type="text" 
+                         id="email" 
+                         formControlName="Email" 
+                         [ngClass]="{ 'is-invalid': submitted && f['Email'].errors }"
+                        />
+                    </div>
+                    
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="userName">Username</label>
+                        <input 
+                         type="text" 
+                         id="userName" 
+                         formControlName="UserName" 
+                         [ngClass]="{ 'is-invalid': submitted && f['UserName'].errors }"
+                        />
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input 
+                         type="password" 
+                         id="password" 
+                         formControlName="Password" 
+                         [ngClass]="{ 'is-invalid': submitted && f['Password'].errors }"
+                        />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="confirmPassword">Repeat Password</label>
+                        <input 
+                         type="password" 
+                         id="confirmPassword" 
+                         formControlName="ConfirmPassword" 
+                         [ngClass]="{ 'is-invalid': submitted && f['ConfirmPassword'].errors }"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="submit-btn">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
